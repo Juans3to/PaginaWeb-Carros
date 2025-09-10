@@ -1,6 +1,6 @@
-# Pagina web redes 🏎️
+# Pagina de Carros 🏎️
 
-El repositorio de la pagina de carros y su readme 'global'
+El repositorio de la pagina de carros para Redes e Infraestructura.
 
 ## Iniciar página web:
 
@@ -20,6 +20,4 @@ node src/index.js
 
 Solo esta el microservicio de 'usuarios' funcional.
 
-Tecnicamente el de 'Vehiculos' también pero después lo actualizo. 
-
-(pendiente a cambios en general).
+(Pendiente añadir la info a las otras carpetas).
