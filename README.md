@@ -1,11 +1,10 @@
-# Pagina web redes
+# Pagina web redes 🏎️
 
-El repositorio de la pagina de carros y su readme 'global' 🏎️
+El repositorio de la pagina de carros y su readme 'global'
 
 ## Iniciar página web:
 
-Hay que iniciar los 3 index.js de cada carpeta
-Por ende en terminal hay que entrar con:
+Hay que iniciar los 3 index.js de cada carpeta. Por ende en terminal hay que entrar con:
 
 > cd (nombre de la carpeta)
 
@@ -13,7 +12,9 @@ Ej. -> cd MS-Usuarios
 
 De ahí si ejecutar: 
 
-> node src/index.js
+```bash
+node src/index.js
+```
 
 ## Nota:
 
