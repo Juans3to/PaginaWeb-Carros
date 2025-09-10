@@ -12,5 +12,5 @@ app.use(express.json());
 app.use('/usuarios', usuariosControl);
 
 app.listen(3001, () => {
-    console.log('✅ Microservicio de Usuarios ejecutándose en el puerto 3001');
+    console.log('Microservicio de Usuarios ejecutándose en el puerto 3001');
 });
