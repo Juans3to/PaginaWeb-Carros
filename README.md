@@ -4,11 +4,11 @@ El repositorio de la pagina de carros y su readme 'global'
 
 ## Iniciar página web:
 
-Hay que iniciar los 3 index.js de cada carpeta. Por ende en terminal hay que entrar con:
+Hay que iniciar los 4 index.js de cada carpeta (Cuando esten todas listas claro). Por ende en terminal hay que entrar con:
 
 > cd (nombre de la carpeta)
 
-Ej. -> cd MS-Usuarios
+> Ej: cd MS-Usuarios
 
 De ahí si ejecutar: 
 
@@ -16,6 +16,10 @@ De ahí si ejecutar:
 node src/index.js
 ```
 
-## Nota:
+## Notas:
 
-Solo esta el microservicio de 'usuarios' funcional (pendiente a cambios).
+Solo esta el microservicio de 'usuarios' funcional.
+
+Tecnicamente el de 'Vehiculos' también pero después lo actualizo. 
+
+(pendiente a cambios en general).
