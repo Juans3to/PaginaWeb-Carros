@@ -14,7 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 // Rutas
-app.use('/notificaciones', notificacionesRoutes);
+app.use('/', notificacionesRoutes); // 👈 Deja solo esta línea para que funcione con el API Gateway
+app.use('/notificaciones', notificacionesRoutes); // 👈 Esta línea debe ser eliminada o comentada
 
 // Servidor
 app.listen(PORT, () => {
