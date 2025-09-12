@@ -9,7 +9,6 @@ app.use(cors());
 app.use(express.json());
 
 // Rutas del microservicio usuarios
-app.use('/', usuariosControl); // 👈 Esta línea para que funcione con el API Gateway
 app.use('/usuarios', usuariosControl);
 
 app.listen(3001, () => {

@@ -1,6 +1,7 @@
 ## Comandos para la base de datos de 'MS-Usuarios':
 
-CREATE DATABASE compraventa;
+CREATE DATABASE UsuariosWeb;
+USE UsuariosWeb;
 
 CREATE TABLE usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
