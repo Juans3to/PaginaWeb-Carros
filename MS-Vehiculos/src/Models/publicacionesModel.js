@@ -1,11 +1,11 @@
 const pool = require('./db');
 
 const PublicacionesModel = {
-  async crearPublicacion(idUsuario, idVehiculo, estado = 'activo') {
+  async crearPublicacion(idUsuario, idVehiculo) {
     const [result] = await pool.query(
-      `INSERT INTO publicaciones (idUsuario, idVehiculo, estado)
-       VALUES (?, ?, ?)`,
-      [idUsuario, idVehiculo, estado]
+      `INSERT INTO publicaciones (idUsuario, idVehiculo)
+       VALUES (?, ?)`,
+      [idUsuario, idVehiculo]
     );
     return result.insertId;
   },
@@ -33,4 +33,3 @@ const PublicacionesModel = {
 };
 
 module.exports = PublicacionesModel;
-

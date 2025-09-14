@@ -8,23 +8,17 @@ const publicacionesController = require('./Controllers/publicacionesController')
 
 const app = express();
 
+
 // Servir archivos estáticos
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
 
-/*
-// Añade esta línea:
-app.get('/', (req, res) => {
-  res.send('¡Microservicio de vehículos funcionando!');
-});
-*/
+
 
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
-app.use('/', vehiculosController); // This will handle the rewritten path
 app.use('/vehiculos', vehiculosController);
-app.use('/', publicacionesController);
 app.use('/publicaciones', publicacionesController);
 
 const PORT = 3003;

@@ -2,16 +2,10 @@ const express = require('express');
 const router = express.Router();
 const PublicacionesModel = require('../Models/publicacionesModel');
 
-// Crear publicación (ahora acepta "estado" opcional)
 router.post('/', async (req, res) => {
   try {
-    const { idUsuario, idVehiculo, estado } = req.body;
-
-    // Validar estado (solo 'activo' o 'vendido', default 'activo')
-    const allowed = ['activo', 'vendido'];
-    const estadoFinal = allowed.includes(estado) ? estado : 'activo';
-
-    const id = await PublicacionesModel.crearPublicacion(idUsuario, idVehiculo, estadoFinal);
+    const { idUsuario, idVehiculo } = req.body;
+    const id = await PublicacionesModel.crearPublicacion(idUsuario, idVehiculo);
     res.status(201).json({ mensaje: 'Publicación creada', id });
   } catch (error) {
     console.error(error);
@@ -19,14 +13,13 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Obtener todas las publicaciones
 router.get('/', async (req, res) => {
   try {
     const publicaciones = await PublicacionesModel.obtenerPublicaciones();
 
     const publicacionesConImagen = publicaciones.map(pub => ({
       ...pub,
-      imagen: "http://localhost:3003/images/carro.jpg" // ruta fija por ahora
+      imagen: "http://localhost:3003/images/carro.jpg" // la ruta de tu imagen
     }));
 
     res.json(publicacionesConImagen);
@@ -35,15 +28,12 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Obtener publicación por id
+
 router.get('/:id', async (req, res) => {
   try {
     const publicacion = await PublicacionesModel.obtenerPublicacionPorId(req.params.id);
     if (publicacion) {
-      res.json({
-        ...publicacion,
-        imagen: "http://localhost:3003/images/carro.jpg" // igual que en el listado
-      });
+      res.json(publicacion);
     } else {
       res.status(404).json({ mensaje: 'Publicación no encontrada' });
     }
@@ -52,8 +42,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-
-// Marcar como vendido
 router.put('/:id/vender', async (req, res) => {
   try {
     const actualizado = await PublicacionesModel.marcarComoVendido(req.params.id);
@@ -68,4 +56,3 @@ router.put('/:id/vender', async (req, res) => {
 });
 
 module.exports = router;
-

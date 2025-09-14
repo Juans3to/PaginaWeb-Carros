@@ -1,9 +1,0 @@
-# Carpetas y archivos a ignorar:
-
-# Carpetas del node js al inicializar
-node_modules/
-package-lock.json
-package.json
-
-# Datos del correo
-.env
