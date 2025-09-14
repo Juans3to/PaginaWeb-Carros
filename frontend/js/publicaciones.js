@@ -1,1 +1,0 @@
-// Conexión con microservicios 'publicaciones'

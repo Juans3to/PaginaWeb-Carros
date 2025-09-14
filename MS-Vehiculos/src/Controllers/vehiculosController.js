@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
     } catch (error) {
         console.error("Error al crear vehícusssso:", error);
         res.status(500).json({
-            mensaje: "Error al cxrear vehículo",
+            mensaje: "Error al crear vehículo",
             error: JSON.stringify(error, null, 2)
         });
     }

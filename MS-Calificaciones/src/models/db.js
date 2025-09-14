@@ -1,10 +1,14 @@
-const mysql = require('mysql2/promise');
+import dotenv from 'dotenv';
+import mysql from 'mysql2/promise';
 
+dotenv.config();
+
+// Crear el pool de conexiones
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',  // cambia si tienes contraseña
-    database: 'autoslindotesdb'  // tu base de datos
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 });
 
-module.exports = pool;
+export default pool;

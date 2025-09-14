@@ -1,0 +1,125 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #1abc9c;
+    --text-light: #ecf0f1;
+    --text-dark: #34495e;
+    --bg-light: #f4f6f9;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* --- Estilo de la sección principal (el "poster") --- */
+.hero-section {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+}
+.hero-section::before, .hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20%; /* Ajusta el tamaño de la imagen del carro */
+    background-size: cover;
+    background-position: center;
+}
+.hero-section::before {
+    left: 0;
+    background-image: url('https://i.imgur.com/bGEjGtm.jpeg'); /* URL de un carro genérico de imgur */
+}
+.hero-section::after {
+    right: 0;
+    background-image: url('https://i.imgur.com/6FZbyih.jpeg'); /* URL de otro carro genérico de imgur */
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.hero-title {
+    font-size: 3em;
+    margin: 0;
+}
+.hero-subtitle {
+    font-size: 1.2em;
+    margin: 10px 0 20px;
+}
+.hero-actions .btn {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.hero-actions .btn:hover {
+    background-color: #16a085;
+}
+
+/* --- Estilo del contenido principal y formulario --- */
+.main-container {
+    max-width: 960px;
+    margin: 30px auto;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.section-box {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    flex: 1;
+    min-width: 300px;
+}
+h2 {
+    margin-top: 0;
+    border-bottom: 2px solid var(--bg-light);
+    padding-bottom: 10px;
+    color: var(--text-dark);
+}
+#car-info, #car-reviews {
+    min-height: 150px;
+}
+.rating-stars {
+    color: #f1c40f;
+    font-size: 1.2em;
+}
+.review-card {
+    border-left: 3px solid var(--secondary-color);
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+.review-card p {
+    margin: 5px 0;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #34495e;
+}

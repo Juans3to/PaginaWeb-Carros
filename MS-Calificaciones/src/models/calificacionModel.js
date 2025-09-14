@@ -1,17 +1,19 @@
-import pool from "../config/db.js";
+import pool from "./db.js";
 
-export const crearCalificacion = async (carroId, usuarioId, estrellas) => {
+// Función para insertar una nueva calificación.
+export const crearCalificacion = async (idVehiculo, idUsuario, estrellas) => {
   const [result] = await pool.query(
-    "INSERT INTO calificaciones (carro_id, usuario_id, estrellas) VALUES (?, ?, ?)",
-    [carroId, usuarioId, estrellas]
+    "INSERT INTO calificaciones (idVehiculo, idUsuario, estrellas) VALUES (?, ?, ?)",
+    [idVehiculo, idUsuario, estrellas]
   );
   return result.insertId;
 };
 
-export const obtenerCalificacionesPorCarro = async (carroId) => {
+// Función para obtener todas las calificaciones de un vehículo.
+export const obtenerCalificacionesPorVehiculo = async (idVehiculo) => {
   const [rows] = await pool.query(
-    "SELECT * FROM calificaciones WHERE carro_id = ?",
-    [carroId]
+    "SELECT * FROM calificaciones WHERE idVehiculo = ?",
+    [idVehiculo]
   );
   return rows;
 };

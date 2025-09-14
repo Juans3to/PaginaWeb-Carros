@@ -1,10 +1,11 @@
-import { crearCalificacion, obtenerCalificacionesPorCarro } from "../models/calificacionModel.js";
+import { crearCalificacion, obtenerCalificacionesPorVehiculo } from "../models/calificacionModel.js";
 
+// Controlador para agregar una calificación.
 export const agregarCalificacion = async (req, res) => {
   try {
-    const { carro_id, usuario_id, estrellas } = req.body;
+    const { idVehiculo, idUsuario, estrellas } = req.body;
 
-    if (!carro_id || !usuario_id || !estrellas) {
+    if (!idVehiculo || !idUsuario || !estrellas) {
       return res.status(400).json({ mensaje: "Faltan datos requeridos" });
     }
 
@@ -12,17 +13,18 @@ export const agregarCalificacion = async (req, res) => {
       return res.status(400).json({ mensaje: "La calificación debe ser de 1 a 5 estrellas" });
     }
 
-    const calificacionId = await crearCalificacion(carro_id, usuario_id, estrellas);
+    const calificacionId = await crearCalificacion(idVehiculo, idUsuario, estrellas);
     res.status(201).json({ mensaje: "Calificación agregada", calificacionId });
   } catch (error) {
     res.status(500).json({ mensaje: "Error en el servidor", error });
   }
 };
 
+// Controlador para listar las calificaciones de un vehículo.
 export const listarCalificaciones = async (req, res) => {
   try {
-    const { carro_id } = req.params;
-    const calificaciones = await obtenerCalificacionesPorCarro(carro_id);
+    const { idVehiculo } = req.params;
+    const calificaciones = await obtenerCalificacionesPorVehiculo(idVehiculo);
     res.json(calificaciones);
   } catch (error) {
     res.status(500).json({ mensaje: "Error en el servidor", error });

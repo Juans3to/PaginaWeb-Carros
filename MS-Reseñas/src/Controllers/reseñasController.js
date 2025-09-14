@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ResenasModel = require('../Models/reseñasModel');
 
-// GET todas
+// GET: Ruta para obtener todas las reseñas
 router.get('/', async (req, res) => {
   try {
     const reseñas = await ResenasModel.obtenerTodas();
@@ -12,31 +12,39 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST nueva
+// GET: Ruta para obtener las reseñas de un vehículo específico
+router.get('/:idVehiculo', async (req, res) => {
+  try {
+    const { idVehiculo } = req.params;
+    const reseñas = await ResenasModel.obtenerPorVehiculo(idVehiculo);
+    res.json(reseñas);
+  } catch (err) {
+    res.status(500).json({ error: 'Error al obtener reseñas por vehículo' });
+  }
+});
+
+// POST: Ruta para crear una nueva reseña
 router.post('/', async (req, res) => {
   try {
-    const { idUsuario, calificacion, comentario } = req.body;
+    const { idUsuario, idVehiculo, comentario } = req.body;
 
-    if (!idUsuario || !calificacion) {
-      return res.status(400).json({ error: 'idUsuario y calificación son obligatorios' });
+    // Validación de datos
+    if (!idUsuario || !idVehiculo || !comentario) {
+      return res.status(400).json({ error: 'idUsuario, idVehiculo y comentario son obligatorios' });
     }
 
-    if (calificacion < 1 || calificacion > 5) {
-      return res.status(400).json({ error: 'La calificación debe estar entre 1 y 5' });
-    }
-
-    const id = await ResenasModel.crear(idUsuario, calificacion, comentario);
+    const id = await ResenasModel.crear(idUsuario, idVehiculo, comentario);
     res.status(201).json({ mensaje: 'Reseña creada', id });
   } catch (err) {
     res.status(500).json({ error: 'Error al crear reseña' });
   }
 });
 
-// PUT actualizar
+// PUT: Ruta para actualizar una reseña existente
 router.put('/:id', async (req, res) => {
   try {
-    const { calificacion, comentario } = req.body;
-    const actualizado = await ResenasModel.actualizar(req.params.id, calificacion, comentario);
+    const { comentario } = req.body;
+    const actualizado = await ResenasModel.actualizar(req.params.id, comentario);
 
     if (actualizado === 0) {
       return res.status(404).json({ error: 'Reseña no encontrada' });
@@ -48,7 +56,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE
+// DELETE: Ruta para eliminar una reseña
 router.delete('/:id', async (req, res) => {
   try {
     const eliminado = await ResenasModel.eliminar(req.params.id);
