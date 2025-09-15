@@ -1,62 +1,81 @@
-<!-- (Página principal - lista de carros destacados o búsqueda) -->
+<!-- (Página principal) -->
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opiniones de Coches</title>
-    <link rel="stylesheet" href="css/estilos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SuperCars - Review Page</title>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <div class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">OPINIONES DE COCHES</h1>
-            <p class="hero-subtitle">Encuentra tu nuevo coche gracias a la ayuda de nuestras opiniones independientes.</p>
-            <div class="hero-actions">
-                <a href="#review-form-section" class="btn">Deja tu opinión</a>
-            </div>
-        </div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">Super-Cars</div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="buscar_carro.html">Buscar</a>
+      <a href="login.html">Iniciar Sesión</a>
+      <a href="registro.html">Registrarse</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Encuentra el coche perfecto para ti</h1>
+      <p class="hero-subtitle">
+        Miles de conductores comparten sus experiencias reales para ayudarte a elegir 
+        con seguridad, confianza y tranquilidad.
+      </p>
+      <a href="registro.html" class="btn">Unirme ahora</a>
+      <a href="buscar_carro.html" class="btn btn-secondary">Explorar coches</a>
     </div>
+  </div>
 
-    <div class="main-container">
-        <div class="section-box" id="car-info">
-            <h2>Detalles del Carro</h2>
-            <div id="car-details">
-                <p>Cargando información del carro...</p>
-            </div>
-            <p><strong>Calificación Promedio:</strong> <span id="avg-rating">0</span>/5</p>
-        </div>
-
-        <div class="section-box" id="car-reviews">
-            <h2>Comentarios</h2>
-            <div id="reseñas-list">
-                <p>Cargando comentarios...</p>
-            </div>
-        </div>
+  <!-- CARROS TOP -->
+  <div class="main-container">
+    <div class="section-box full-width">
+      <h2>Los carros mejor calificados 🎌</h2>
+      <p>Descubre los modelos mejor valorados por nuestra comunidad de usuarios.</p>
+      <div id="topCarsContainer" class="cars-grid">
+        <!-- Aquí se insertarán los autos que mejor calificados estan (investigar) -->
+      </div>
     </div>
+  </div>
 
-    <div class="main-container">
-        <div class="section-box" id="review-form-section" style="width: 100%;">
-            <h2>Deja tu Calificación y Comentario</h2>
-            <form id="submit-form">
-                <div class="form-group">
-                    <label for="user-id">ID de Usuario:</label>
-                    <input type="number" id="user-id" required>
-                </div>
-                <div class="form-group">
-                    <label for="rating">Calificación (1-5):</label>
-                    <input type="number" id="rating" min="1" max="5" required>
-                </div>
-                <div class="form-group">
-                    <label for="comment">Comentario:</label>
-                    <textarea id="comment" rows="4" required></textarea>
-                </div>
-                <button type="submit">Enviar</button>
-            </form>
+  <!-- CONFIANZA -->
+  <div class="main-container">
+    <div class="section-box full-width">
+      <h2>¿Por qué confiar en nosotros?</h2>
+      <div class="trust-icons-container">
+        <div class="trust-icon-item">
+          <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Escudo Imparcial">
+          <h3>100% Imparcial</h3>
+          <p>Opiniones transparentes, honestas y basadas en experiencias reales.</p>
         </div>
+        <div class="trust-icon-item">
+          <img src="https://cdn-icons-png.flaticon.com/512/565/565547.png" alt="Análisis en profundidad">
+          <h3>Reseñas útiles</h3>
+          <p>Comparte y consulta reseñas detalladas de cada coche en el mercado.</p>
+        </div>
+        <div class="trust-icon-item">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Comparador de coches">
+          <h3>Tu mejor comparador</h3>
+          <p>Encuentra y compara precios, modelos y calificaciones en un solo lugar.</p>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script src="MainApp.js"></script>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 Opiniones de Coches - Todas las opiniones son de usuarios reales</p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
+
+
+
