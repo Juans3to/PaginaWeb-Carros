@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (signInForm) {
         signInForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const nombre = document.getElementById('username').value;
+            const username = document.getElementById('username').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`${MS_USUARIOS_URL}/usuarios`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nombre, email, password })
+                    body: JSON.stringify({ username, email, password })
                 });
 
                 const data = await response.json();

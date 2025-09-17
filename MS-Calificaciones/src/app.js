@@ -1,14 +1,14 @@
-// Cargar las variables de entorno desde el archivo .env
-require('dotenv').config();
+// src/app.js
+import express from "express";
+import morgan from "morgan";
+import calificacionesRoutes from "./routes/calificacionesRoutes.js";
 
-const mysql = require('mysql2/promise');
+const app = express();
 
-// Crear el pool de conexiones utilizando las variables del archivo .env
-const pool = mysql.createPool({
-    host: process.env.DB_HOST,       // Usamos las variables de entorno
-    user: process.env.DB_USER,       // Usamos las variables de entorno
-    password: process.env.DB_PASS,   // Usamos las variables de entorno
-    database: process.env.DB_NAME    // Usamos las variables de entorno
-});
+app.use(morgan("dev"));
+app.use(express.json());
 
-module.exports = pool;
+// Rutas
+app.use("/calificaciones", calificacionesRoutes);
+
+export default app;

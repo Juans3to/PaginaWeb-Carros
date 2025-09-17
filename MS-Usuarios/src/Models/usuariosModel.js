@@ -1,12 +1,12 @@
 const pool = require('./db');
 
 const UsuarioModel = {
-    async crearUsuario(nombre, email, password) {
+    async crearUsuario(username, email, password) {
         const [result] = await pool.query(
-            'INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)',
-            [nombre, email, password]
+            'INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)',
+            [username, email, password]
         );
-        return result.insertId;
+        return result.insertId; // Se devuelve el id (aunque esto no se usa y/o muestra como tal en la pagina, en postman si.)
     },
 
     async obtenerUsuarios() {
@@ -14,31 +14,32 @@ const UsuarioModel = {
         return rows;
     },
 
-    async obtenerUsuarioPorId(id) {
-        const [rows] = await pool.query('SELECT * FROM usuarios WHERE id = ?', [id]);
+    async obtenerUsuarioPorUsername(username) {
+        const [rows] = await pool.query('SELECT * FROM usuarios WHERE username = ?', [username]);
         return rows[0];
     },
 
-    async actualizarUsuario(id, nombre, email, password) {
+    async actualizarUsuario(username, email, password) {
         const [result] = await pool.query(
-            'UPDATE usuarios SET nombre = ?, email = ?, password = ? WHERE id = ?',
-            [nombre, email, password, id]
+            'UPDATE usuarios SET email = ?, password = ? WHERE username = ?',
+            [email, password, username]
         );
         return result.affectedRows;
     },
 
-    async eliminarUsuario(id) {
-        const [result] = await pool.query('DELETE FROM usuarios WHERE id = ?', [id]);
+    async eliminarUsuario(username) {
+        const [result] = await pool.query('DELETE FROM usuarios WHERE username = ?', [username]);
         return result.affectedRows;
     },
 
-    async login(email, password) {
+    async login(identifier, password) {
         const [rows] = await pool.query(
-            'SELECT * FROM usuarios WHERE email = ? AND password = ?',
-            [email, password]
+            'SELECT * FROM usuarios WHERE (email = ? OR username = ?) AND password = ?',
+            [identifier, identifier, password]
         );
         return rows[0];
     }
+
 };
 
 module.exports = UsuarioModel;

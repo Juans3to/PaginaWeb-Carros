@@ -5,8 +5,8 @@ const UsuarioModel = require('../Models/usuariosModel');
 // Crear usuario
 router.post('/', async (req, res) => {
     try {
-        const { nombre, email, password } = req.body;
-        const id = await UsuarioModel.crearUsuario(nombre, email, password);
+        const { username, email, password } = req.body;
+        const id = await UsuarioModel.crearUsuario(username, email, password);
         res.status(201).json({ mensaje: 'Usuario creado', id });
     } catch (error) {
         console.error(error);
@@ -24,10 +24,10 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Consultar por id
-router.get('/:id', async (req, res) => {
+// Consultar por username
+router.get('/:username', async (req, res) => {
     try {
-        const usuario = await UsuarioModel.obtenerUsuarioPorId(req.params.id);
+        const usuario = await UsuarioModel.obtenerUsuarioPorUsername(req.params.username);
         usuario
             ? res.json(usuario)
             : res.status(404).json({ mensaje: 'Usuario no encontrado' });
@@ -37,12 +37,11 @@ router.get('/:id', async (req, res) => {
 });
 
 // Actualizar usuario
-router.put('/:id', async (req, res) => {
+router.put('/:username', async (req, res) => {
     try {
-        const { nombre, email, password } = req.body;
+        const { email, password } = req.body;
         const actualizado = await UsuarioModel.actualizarUsuario(
-            req.params.id,
-            nombre,
+            req.params.username,
             email,
             password
         );
@@ -55,9 +54,9 @@ router.put('/:id', async (req, res) => {
 });
 
 // Eliminar usuario
-router.delete('/:id', async (req, res) => {
+router.delete('/:username', async (req, res) => {
     try {
-        const eliminado = await UsuarioModel.eliminarUsuario(req.params.id);
+        const eliminado = await UsuarioModel.eliminarUsuario(req.params.username);
         eliminado
             ? res.json({ mensaje: 'Usuario eliminado' })
             : res.status(404).json({ mensaje: 'Usuario no encontrado' });
@@ -69,8 +68,8 @@ router.delete('/:id', async (req, res) => {
 // Login
 router.post('/login', async (req, res) => {
     try {
-        const { email, password } = req.body;
-        const usuario = await UsuarioModel.login(email, password);
+        const { identifier, password } = req.body; // puede ser username o email
+        const usuario = await UsuarioModel.login(identifier, password);
         usuario
             ? res.json({ mensaje: 'Login exitoso', usuario })
             : res.status(401).json({ mensaje: 'Credenciales incorrectas' });

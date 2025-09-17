@@ -5,22 +5,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logInForm) {
         logInForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('email').value;
+            const identifier = document.getElementById('identifier').value;
             const password = document.getElementById('password').value;
 
             try {
                 const response = await fetch(`${MS_USUARIOS_URL}/usuarios/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
+                    body: JSON.stringify({ identifier, password })
                 });
 
                 const data = await response.json();
                 if (response.ok) {
-                    localStorage.setItem('currentUserId', data.usuario.id);
-                    localStorage.setItem('currentUserName', data.usuario.nombre);
+                    // Guardamos datos del usuario en localStorage
+                    localStorage.setItem('currentUserId', data.usuario.id); 
+                    localStorage.setItem('currentUserName', data.usuario.username); 
+                    
                     showMessage('¡Inicio de sesión exitoso!', 'success');
-                    window.location.href = 'buscar_carro.html';
+                    window.location.href = 'index.html';
                 } else {
                     showMessage(data.mensaje, 'error');
                 }
@@ -31,4 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 

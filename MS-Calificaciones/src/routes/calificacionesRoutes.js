@@ -1,12 +1,19 @@
 import { Router } from "express";
-import { agregarCalificacion, listarCalificaciones } from "../controllers/calificacionController.js";
+import {
+  crearCalificacion,
+  obtenerCalificaciones,
+  obtenerPromedio
+} from "../controllers/calificacionController.js";
 
 const router = Router();
 
-// Ruta POST para agregar una nueva calificación
-router.post("/", agregarCalificacion);
+// Crear una calificación
+router.post("/", crearCalificacion);
 
-// Ruta GET para obtener las calificaciones de un vehículo por su ID
-router.get("/:idVehiculo", listarCalificaciones);
+// Obtener todas las calificaciones
+router.get("/", obtenerCalificaciones);
+
+// Obtener promedio de un carro
+router.get("/promedio/:carroId", obtenerPromedio);
 
 export default router;

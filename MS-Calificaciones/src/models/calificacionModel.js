@@ -1,19 +1,25 @@
-import pool from "./db.js";
+import db from "../config/db.js";
 
-// Función para insertar una nueva calificación.
-export const crearCalificacion = async (idVehiculo, idUsuario, estrellas) => {
-  const [result] = await pool.query(
-    "INSERT INTO calificaciones (idVehiculo, idUsuario, estrellas) VALUES (?, ?, ?)",
-    [idVehiculo, idUsuario, estrellas]
+export const crearCalificacion = async (carroId, estrellas) => {
+  const [result] = await db.query(
+    "INSERT INTO calificaciones (carroId, estrellas) VALUES (?, ?)",
+    [carroId, estrellas]
   );
-  return result.insertId;
+  return { id: result.insertId, carroId, estrellas };
 };
 
-// Función para obtener todas las calificaciones de un vehículo.
-export const obtenerCalificacionesPorVehiculo = async (idVehiculo) => {
-  const [rows] = await pool.query(
-    "SELECT * FROM calificaciones WHERE idVehiculo = ?",
-    [idVehiculo]
+export const obtenerCalificacionesPorCarro = async (carroId) => {
+  const [rows] = await db.query(
+    "SELECT * FROM calificaciones WHERE carroId = ?",
+    [carroId]
   );
   return rows;
+};
+
+export const obtenerPromedioPorCarro = async (carroId) => {
+  const [rows] = await db.query(
+    "SELECT AVG(estrellas) AS promedio FROM calificaciones WHERE carroId = ?",
+    [carroId]
+  );
+  return rows[0].promedio;
 };

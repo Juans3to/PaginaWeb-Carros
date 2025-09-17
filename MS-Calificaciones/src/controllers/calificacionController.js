@@ -1,32 +1,36 @@
-import { crearCalificacion, obtenerCalificacionesPorVehiculo } from "../models/calificacionModel.js";
+import db from "../config/db.js";
 
-// Controlador para agregar una calificación.
-export const agregarCalificacion = async (req, res) => {
+// Crear calificación
+export const crearCalificacion = async (req, res) => {
   try {
-    const { idVehiculo, idUsuario, estrellas } = req.body;
-
-    if (!idVehiculo || !idUsuario || !estrellas) {
-      return res.status(400).json({ mensaje: "Faltan datos requeridos" });
-    }
-
-    if (estrellas < 1 || estrellas > 5) {
-      return res.status(400).json({ mensaje: "La calificación debe ser de 1 a 5 estrellas" });
-    }
-
-    const calificacionId = await crearCalificacion(idVehiculo, idUsuario, estrellas);
-    res.status(201).json({ mensaje: "Calificación agregada", calificacionId });
+    const { carroId, estrellas } = req.body;
+    await db.query("INSERT INTO calificaciones (carroId, estrellas) VALUES (?, ?)", [carroId, estrellas]);
+    res.json({ mensaje: "Calificación creada con éxito" });
   } catch (error) {
-    res.status(500).json({ mensaje: "Error en el servidor", error });
+    console.error(error);
+    res.status(500).json({ error: "Error al crear calificación" });
   }
 };
 
-// Controlador para listar las calificaciones de un vehículo.
-export const listarCalificaciones = async (req, res) => {
+// Obtener todas las calificaciones
+export const obtenerCalificaciones = async (req, res) => {
   try {
-    const { idVehiculo } = req.params;
-    const calificaciones = await obtenerCalificacionesPorVehiculo(idVehiculo);
-    res.json(calificaciones);
+    const [rows] = await db.query("SELECT * FROM calificaciones");
+    res.json(rows);
   } catch (error) {
-    res.status(500).json({ mensaje: "Error en el servidor", error });
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener calificaciones" });
+  }
+};
+
+// Obtener promedio de un carro
+export const obtenerPromedio = async (req, res) => {
+  try {
+    const { carroId } = req.params;
+    const [rows] = await db.query("SELECT AVG(estrellas) AS promedio FROM calificaciones WHERE carroId = ?", [carroId]);
+    res.json(rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al calcular promedio" });
   }
 };

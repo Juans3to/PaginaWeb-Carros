@@ -6,17 +6,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SuperCars - Review Page</title>
+  <link rel="icon" href="images/depositphotos_10041679-stock-illustration-illustration-of-a-car.jpg">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <!-- HEADER -->
   <header class="header">
     <div class="logo">Super-Cars</div>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="buscar_carro.html">Buscar</a>
-      <a href="login.html">Iniciar Sesión</a>
-      <a href="registro.html">Registrarse</a>
+    <nav id="nav-container">
+    <!-- Aquí JS va a meter los botones dependiendo si el usuario está logueado o no -->
     </nav>
   </header>
 
@@ -28,8 +26,9 @@
         Miles de conductores comparten sus experiencias reales para ayudarte a elegir 
         con seguridad, confianza y tranquilidad.
       </p>
-      <a href="registro.html" class="btn">Unirme ahora</a>
-      <a href="buscar_carro.html" class="btn btn-secondary">Explorar coches</a>
+      <a href="registro.html" class="btn" id="join-btn">Unirme ahora</a>
+      <a href="buscar_carro.html" class="btn btn-secondary" id="explore-btn">Explorar coches</a> 
+      <!-- CAMBIAR RUTA 'buscar_carro.html' por la suya del buscador de carros (Joseph)-->
     </div>
   </div>
 
@@ -39,7 +38,7 @@
       <h2>Los carros mejor calificados 🎌</h2>
       <p>Descubre los modelos mejor valorados por nuestra comunidad de usuarios.</p>
       <div id="topCarsContainer" class="cars-grid">
-        <!-- Aquí se insertarán los autos que mejor calificados estan (investigar) -->
+        <!-- Aquí se insertarán los autos que mejor calificados estan (investigar como) -->
       </div>
     </div>
   </div>
