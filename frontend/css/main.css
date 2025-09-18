@@ -201,3 +201,36 @@ body {
 .back-link:hover {
     color: #0056b3;
 }
+
+.search-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  margin-left: 12px;
+  text-decoration: none;
+  color: #fff;              /* icono blanco */
+  border: 2px solid #fff;   /* borde blanco */
+  background: transparent;
+  transition: background 0.2s, border-color 0.2s;
+}
+.search-btn:hover {
+  background: #ffffff33;    /* fondo blanquito al pasar */
+  border-color: #fff;       /* borde sigue blanco */
+}
+.search-btn svg {
+  stroke: #fff;             /* líneas de la lupa blancas */
+}
+
+/* Evitar que el logo se vea como link visitado */
+.logo a {
+  color: inherit;          /* toma el color del header */
+  text-decoration: none;   /* quita subrayado */
+}
+
+.logo a:visited {
+  color: inherit;          /* evita morado al estar visitado */
+}
+

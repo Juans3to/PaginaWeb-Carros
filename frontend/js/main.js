@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nav = document.getElementById("nav-container");
     const exploreBtn = document.getElementById("explore-btn");
     const joinBtn = document.getElementById("join-btn");
+    const searchBtn = document.getElementById("search-btn"); // 👈 añadimos la lupa
 
     const currentUserName = localStorage.getItem("currentUserName");
 
@@ -33,9 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <a href="#" id="logoutLink">Cerrar sesión</a>
         `;
 
-        // Mostrar botón Explorar coches
+        // Mostrar botón Explorar coches y lupa
         if (exploreBtn) exploreBtn.style.display = "inline-block";
         if (joinBtn) joinBtn.style.display = "none";
+        if (searchBtn) searchBtn.style.display = "inline-flex"; // 👈 ahora sí se ve la lupa
 
         // Logout
         document.getElementById("logoutLink").addEventListener("click", () => {
@@ -50,8 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <a href="registro.html">Registrarse</a>
         `;
 
-        // Esconder botón Explorar coches
+        // Esconder botón Explorar coches y lupa
         if (exploreBtn) exploreBtn.style.display = "none";
         if (joinBtn) joinBtn.style.display = "inline-block";
+        if (searchBtn) searchBtn.style.display = "none"; // 👈 ocultamos la lupa
     }
 });

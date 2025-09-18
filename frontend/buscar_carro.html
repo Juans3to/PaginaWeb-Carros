@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buscar carros</title>
+  <link rel="icon" href="images/depositphotos_10041679-stock-illustration-illustration-of-a-car.jpg?v=1">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/buscar.css">
+</head>
+<body>
+  <!-- Header reutilizable -->
+  <header class="header">
+    <div class="logo"><a href="index.html">Super-Cars</a></div>
+    <nav id="nav-container"></nav>
+  </header>
+
+  <main class="buscador-container">
+    <section class="buscador-box">
+      <h1>Buscar carros</h1>
+      <div class="searchbar">
+        <input id="q" type="search" placeholder="Escribe marca o modelo… (ej. Toyota, Civic, etc.)" autocomplete="off" />
+        <button id="clear" title="Limpiar">✕</button>
+      </div>
+      <p class="hint">Consejo: escribe al menos 2 letras para empezar a ver resultados.</p>
+
+      <div id="results" class="results-list" aria-live="polite"></div>
+
+      <div class="pager">
+        <button id="prev" disabled>← Anterior</button>
+        <span id="pageInfo"></span>
+        <button id="next" disabled>Siguiente →</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Opiniones de Coches</p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/buscar.js"></script>
+</body>
+</html>

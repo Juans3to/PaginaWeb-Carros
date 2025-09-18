@@ -33,6 +33,34 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Buscar vehículos por modelo: /vehiculos/buscar?query=Toyota&limit=10&offset=0
+router.get('/buscar', async (req, res) => {
+  try {
+    const { query = '', limit = 15, offset = 0 } = req.query;
+
+    // Si no mandan query, devolvemos vacío (o podrías devolver recientes)
+    if (query.trim() === '') {
+      return res.json({ items: [], total: 0, limit: Number(limit), offset: Number(offset) });
+    }
+
+    const [items, total] = await Promise.all([
+      VehiculosModel.buscarPorModelo({ query, limit, offset }),
+      VehiculosModel.contarPorModelo({ query })
+    ]);
+
+    res.json({
+      items,
+      total,
+      limit: Number(limit),
+      offset: Number(offset),
+      hasMore: Number(offset) + Number(limit) < total
+    });
+  } catch (error) {
+    console.error('Error en /vehiculos/buscar:', error);
+    res.status(500).json({ mensaje: 'Error al buscar vehículos' });
+  }
+});
+
 // Obtener vehículo por id
 router.get('/:id', async (req, res) => {
     try {

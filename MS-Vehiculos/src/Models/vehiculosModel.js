@@ -39,7 +39,42 @@ const VehiculosModel = {
   async eliminarVehiculo(id) {
     const [result] = await pool.query('DELETE FROM autos WHERE id = ?', [id]);
     return result.affectedRows;
-  }
+  },
+
+  // Buscar por modelo con paginación (LIKE %query%)
+  async buscarPorModelo({ query, limit = 15, offset = 0 }) {
+    // Asegurar números
+    limit = Number(limit) || 15;
+    offset = Number(offset) || 0;
+
+    // LIKE insensible a mayúsculas si tu collation es *_ci (lo normal en MySQL).
+    const like = `%${query || ''}%`;
+
+    const [rows] = await pool.query(
+      `SELECT id, Modelo, Anio, Estado, Km, Precio_en_dolares, MSRP
+       FROM autos
+       WHERE Modelo LIKE ?
+       ORDER BY id DESC
+       LIMIT ? OFFSET ?`,
+      [like, limit, offset]
+    );
+    return rows;
+  },
+
+  // Para saber cuántos hay en total y poder paginar en frontend
+  async contarPorModelo({ query }) {
+    const like = `%${query || ''}%`;
+    const [rows] = await pool.query(
+      `SELECT COUNT(*) AS total
+       FROM autos
+       WHERE Modelo LIKE ?`,
+      [like]
+    );
+    return rows[0]?.total || 0;
+  },
+
 };
+
+
 
 module.exports = VehiculosModel;
