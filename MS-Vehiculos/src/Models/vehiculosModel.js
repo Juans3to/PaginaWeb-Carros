@@ -109,7 +109,7 @@ const VehiculosModel = {
       `SELECT id, Modelo, Anio, Estado, Km, Precio_en_dolares, MSRP
      FROM autos
      ORDER BY id ASC
-     LIMIT 8`
+     LIMIT 4`
     );
     return rows;
   }

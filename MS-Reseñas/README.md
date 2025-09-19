@@ -5,7 +5,7 @@ use ResenasWeb;
 
 CREATE TABLE resenas (
     id_resena INT AUTO_INCREMENT PRIMARY KEY,
-    idUsuario INT NOT NULL,
+    username VARCHAR(100) NOT NULL,
     idVehiculo INT NOT NULL,
     comentario VARCHAR(255),
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP);

@@ -91,3 +91,39 @@
 #reseña-form button:hover {
   background: #444;
 }
+
+#calificacion { margin-top: 24px; }
+#calificacion h2 { margin: 10px 0 8px; }
+
+#rating-summary {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 1.1rem; margin-bottom: 8px;
+}
+#rating-number { font-weight: 700; }
+
+.rate-form {
+  display: flex; align-items: center; gap: 10px;
+  margin: 8px 0;
+}
+.rate-form input[type="number"] {
+  width: 80px; padding: 6px 8px; border: 1px solid #ccc; border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+.rating-msg { margin-top: 6px; font-size: .95rem; color: #444; }
+.rating-msg.error { color: #b00020; }
+.rating-msg.ok { color: #0a7a28; }
+
+.vehiculo-photo {
+  margin: 12px 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.vehiculo-photo img {
+  width: 100%;
+  max-width: 720px;          /* limita el ancho máximo */
+  aspect-ratio: 16 / 9;      /* recorte agradable; si no quieres, quita esta línea */
+  object-fit: cover;         /* rellena sin deformar */
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+}

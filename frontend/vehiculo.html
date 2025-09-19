@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Detalles del vehículo</title>
   <link rel="icon" href="images/depositphotos_10041679-stock-illustration-illustration-of-a-car.jpg">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/vehiculo.css"> <!-- opcional -->
 </head>
+
 <body>
   <header class="header">
     <div class="logo"><a href="index.html">Super-Cars</a></div>
@@ -17,8 +19,30 @@
   <main class="vehiculo-container">
     <section id="vehiculo-info">
       <h1 id="vehiculo-title">Cargando...</h1>
+      <!-- Foto del vehículo (misma para todos) -->
+      <div class="vehiculo-photo">
+        <img id="vehiculo-img" src="images/delorian.jpg" alt="Foto del vehículo">
+      </div>
       <div id="vehiculo-specs"></div>
-      <div id="vehiculo-rating"></div>
+      <!-- CALIFICACIÓN -->
+      <section id="calificacion">
+        <h2>Calificación</h2>
+
+        <!-- Resumen promedio -->
+        <div id="rating-summary">
+          <span id="rating-number">0.0</span> / 5
+          <span id="rating-count">(0)</span>
+        </div>
+
+        <!-- Calificar por número -->
+        <form id="calificar-form" class="rate-form" aria-label="Calificar este vehículo">
+          <label for="score">Tu calificación (1–5):</label>
+          <input type="number" id="score" name="score" min="1" max="5" step="1" required />
+          <button type="submit" class="btn btn-small">Calificar</button>
+        </form>
+
+        <div id="rating-msg" class="rating-msg"></div>
+      </section>
     </section>
 
     <section id="reseñas">

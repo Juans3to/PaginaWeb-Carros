@@ -64,7 +64,7 @@ router.get('/buscar', async (req, res) => {
 router.get('/ocho', async (req, res) => {
   try {
     const items = await VehiculosModel.obtener8Autos();
-    res.json({ items, limit: 8 });
+    res.json({ items, limit: 4 });
   } catch (e) {
     console.error(e);
     res.status(500).json({ mensaje: 'Error al obtener 8 vehículos' });
