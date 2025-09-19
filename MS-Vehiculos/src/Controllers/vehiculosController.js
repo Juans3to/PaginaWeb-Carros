@@ -3,7 +3,6 @@ const router = express.Router();
 const VehiculosModel = require('../Models/vehiculosModel');
 
 // Crear vehículo
-// Crear vehículo
 router.post('/', async (req, res) => {
     try {
         const { Modelo, Anio, Estado, Km, Precio_en_dolares, MSRP } = req.body;
@@ -60,6 +59,18 @@ router.get('/buscar', async (req, res) => {
     res.status(500).json({ mensaje: 'Error al buscar vehículos' });
   }
 });
+
+// GET /vehiculos/ocho
+router.get('/ocho', async (req, res) => {
+  try {
+    const items = await VehiculosModel.obtener8Autos();
+    res.json({ items, limit: 8 });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ mensaje: 'Error al obtener 8 vehículos' });
+  }
+});
+
 
 // Obtener vehículo por id
 router.get('/:id', async (req, res) => {

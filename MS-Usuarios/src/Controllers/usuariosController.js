@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
         res.status(201).json({ mensaje: 'Usuario creado', id });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ mensaje: 'Error al crear usuario' });
+        res.status(500).json({ mensaje: 'Error al crear: usuario o correo ya en uso' });
     }
 });
 

@@ -1,0 +1,93 @@
+/* ===== Contenedor principal ===== */
+.vehiculo-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #faf7f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* ===== Título ===== */
+#vehiculo-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+/* ===== Especificaciones ===== */
+#vehiculo-specs p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+/* ===== Calificación ===== */
+#vehiculo-rating {
+  margin: 20px 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #444;
+}
+
+/* ===== Reseñas ===== */
+#reseñas {
+  margin-top: 30px;
+}
+
+#reseñas h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.reseña {
+  background: #fff;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.reseña p {
+  margin: 0;
+}
+
+.reseña small {
+  display: block;
+  margin-top: 5px;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+/* ===== Formulario de reseñas ===== */
+#reseña-form {
+  margin-bottom: 20px;
+}
+
+#reseña-form textarea {
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 10px;
+}
+
+#reseña-form button {
+  background: #222;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+#reseña-form button:hover {
+  background: #444;
+}

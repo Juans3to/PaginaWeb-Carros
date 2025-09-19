@@ -41,6 +41,37 @@ const VehiculosModel = {
     return result.affectedRows;
   },
 
+  /*
+  // Top N vehículos por calificación promedio
+  async topCalificados({ limit = 10, minReviews = 0 } = {}) {
+    limit = Number(limit) || 10;
+    minReviews = Number(minReviews) || 0;
+  
+    const [rows] = await pool.query(
+      `SELECT 
+          a.id,
+          a.Modelo,
+          a.Anio,
+          a.Estado,
+          a.Km,
+          a.Precio_en_dolares,
+          a.MSRP,
+          COALESCE(AVG(c.estrellas), 0) AS rating_promedio,
+          COUNT(c.id)                   AS rating_cantidad
+       FROM autos a
+       LEFT JOIN calificaciones c ON c.carroId = a.id
+       GROUP BY a.id
+       HAVING COUNT(c.id) >= ?
+       ORDER BY rating_promedio DESC, rating_cantidad DESC, a.id DESC
+       LIMIT ?`,
+      [minReviews, limit]
+    );
+  
+    return rows;
+  }
+  ,
+  */
+
   // Buscar por modelo con paginación (LIKE %query%)
   async buscarPorModelo({ query, limit = 15, offset = 0 }) {
     // Asegurar números
@@ -73,8 +104,16 @@ const VehiculosModel = {
     return rows[0]?.total || 0;
   },
 
+  async obtener8Autos() {
+    const [rows] = await pool.query(
+      `SELECT id, Modelo, Anio, Estado, Km, Precio_en_dolares, MSRP
+     FROM autos
+     ORDER BY id ASC
+     LIMIT 8`
+    );
+    return rows;
+  }
+
 };
-
-
 
 module.exports = VehiculosModel;
